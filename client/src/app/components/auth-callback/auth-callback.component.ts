@@ -9,8 +9,13 @@ import { AuthService } from '../../services/auth.service';
 export class AuthCallbackComponent implements OnInit {
   constructor(private authService: AuthService) {}
   ngOnInit() {
-    this.authService.completeAuthentication().then(f => {
-      console.log('completeAuthentication...', f);
-    });
+    this.authService.completeAuthentication().then(
+      f => {
+        console.log('completeAuthentication...', f);
+      },
+      error => {
+        console.error('ERROR completeAuthentication...', error);
+      }
+    );
   }
 }
