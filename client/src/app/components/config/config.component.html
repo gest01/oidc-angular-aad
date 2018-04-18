@@ -1,0 +1,39 @@
+<p>
+  config works!
+</p>
+
+
+<form [formGroup]="form">
+
+  authority:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="authority">
+  <br>client_id:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="client_id">
+  <br>redirect_uri:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="redirect_uri">
+  <br>post_logout_redirect_uri:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="post_logout_redirect_uri">
+  <br>scope:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="scope">
+  <br>filterProtocolClaims:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="filterProtocolClaims">
+  <br>monitorSession:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="monitorSession">
+  <br>loadUserInfo:
+  <br>
+  <input style="min-width:600px" type="text" formControlName="loadUserInfo">
+  <br>
+
+  <br>
+  <br>
+  <button type="button" (click)="save()">Save</button>
+  <button type="button" (click)="reset()">Reset</button>
+
+</form>
