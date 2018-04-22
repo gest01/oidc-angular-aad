@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,17 @@ import { AuthCallbackComponent } from './components/auth-callback/auth-callback.
 import { ConfigService } from './services/config.service';
 import { ConfigComponent } from './components/config/config.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+export function getConfiguration(http: HttpClient, config: ConfigService) {
+  console.log('APP_INITIALIZER STARTING');
+  return () => {
+    http.get('openid-configuration.json').subscribe(f => {
+      console.log('result', f);
+    });
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,8 +27,24 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthCallbackComponent,
     ConfigComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [AuthGuardService, AuthService, ConfigService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers: [
+    AuthGuardService,
+    AuthService,
+    ConfigService,
+
+    {
+      provide: APP_INITIALIZER,
+      deps: [HttpClient, ConfigService],
+      useFactory: getConfiguration,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
