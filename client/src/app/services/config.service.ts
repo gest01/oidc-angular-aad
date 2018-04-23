@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { UserManagerSettings } from 'oidc-client';
-import { copyConfig } from '@angular/router/src/config';
 
 @Injectable()
 export class ConfigService {
@@ -23,15 +22,12 @@ export class ConfigService {
     this.currentConfig = config;
   }
 
+  // 'https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/.well-known/openid-configuration',
   // https://github.com/IdentityModel/oidc-client-js/wiki
   private getDefaultConfig(): any {
     return <UserManagerSettings>{
-      metadataUrl: 'http://localhost:4200/openid-configuration.json',
-      authority: 'http://localhost:4200/openid-configuration.json',
-
-      // authority:
-      //   'https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/.well-known/openid-configuration',
-
+      metadataUrl: 'openid-configuration.json',
+      authority: 'openid-configuration.json',
       client_id: '0f911654-6ac1-476c-9b06-4aeb3520d9fa',
       redirect_uri: 'http://localhost:4200/auth-callback/',
       post_logout_redirect_uri: 'http://localhost:4200/',

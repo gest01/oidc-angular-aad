@@ -19,16 +19,11 @@ export class AuthService {
     this.manager = new UserManager(this.config.getClientSettings());
     this.manager.events.addUserLoaded(f => {
       console.log('addUserLoaded...', f);
-
-      console.log(
-        'AuthorizationHeaderValue',
-        this.getAuthorizationHeaderValue()
-      );
-      console.log('Claims', this.getClaims());
     });
 
     this.manager.getUser().then(user => {
       this.user = user;
+      console.log('user', user);
     });
   }
 

@@ -12,7 +12,9 @@
         "favicon.ico",
         "discovery-keys.json",
         "openid-configuration.json",
-        "web.config"
+        "web.config",
+        "config.json",
+        "config.deployment.json"
       ],
       "index": "index.html",
       "main": "main.ts",

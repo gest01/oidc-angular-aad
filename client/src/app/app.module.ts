@@ -12,10 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 export function getConfiguration(http: HttpClient, config: ConfigService) {
-  console.log('APP_INITIALIZER STARTING');
   return () => {
-    http.get('openid-configuration.json').subscribe(f => {
-      console.log('result', f);
+    http.get('config.json').subscribe(f => {
+      config.setConfig(f);
     });
   };
 }

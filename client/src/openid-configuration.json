@@ -9,7 +9,7 @@
     "client_secret_basic"
   ],
 
-  "jwks_uri": "http://localhost:4200/discovery-keys.json",
+  "jwks_uri": "discovery-keys.json",
 
   "response_modes_supported": ["query", "fragment", "form_post"],
   "subject_types_supported": ["pairwise"],
