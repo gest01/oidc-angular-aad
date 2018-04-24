@@ -17,7 +17,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'auth-callback',
+    path: 'authcallback',
     component: AuthCallbackComponent
   },
 

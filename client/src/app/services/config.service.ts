@@ -29,7 +29,7 @@ export class ConfigService {
       metadataUrl: 'openid-configuration.json',
       authority: 'openid-configuration.json',
       client_id: '0f911654-6ac1-476c-9b06-4aeb3520d9fa',
-      redirect_uri: 'http://localhost:4200/auth-callback/',
+      redirect_uri: 'http://localhost:4200/authcallback/',
       post_logout_redirect_uri: 'http://localhost:4200/',
       response_type: 'id_token',
       scope: 'openid profile',
