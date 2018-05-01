@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ProtectedComponent } from './components/protected/protected.component';
-import { AuthGuardService } from './services/auth-guard.service';
+import { RouterModule, Routes } from '@angular/router';
+
 import { AuthCallbackComponent } from './components/auth-callback/auth-callback.component';
 import { ConfigComponent } from './components/config/config.component';
+import { ProtectedComponent } from './components/protected/protected.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
   {
