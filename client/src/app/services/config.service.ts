@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserManagerSettings } from 'oidc-client';
+import Oidc = require('oidc-client');
 
 @Injectable()
 export class ConfigService {
@@ -19,12 +20,14 @@ export class ConfigService {
 
   public setConfig(config: any) {
     console.log('setting config..', config);
-    this.currentConfig = config;
+    //  this.currentConfig = config;
   }
 
   // 'https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/.well-known/openid-configuration',
   // https://github.com/IdentityModel/oidc-client-js/wiki
   private getDefaultConfig(): any {
+    Oidc.Log.logger = console;
+    Oidc.Log.level = Oidc.Log.INFO;
     return <UserManagerSettings>{
       metadataUrl: 'openid-configuration.json',
       authority: 'openid-configuration.json',
@@ -34,8 +37,8 @@ export class ConfigService {
       response_type: 'id_token',
       scope: 'openid profile',
       filterProtocolClaims: true,
-      monitorSession: false,
-      loadUserInfo: true
+      monitorSession: true
+      // loadUserInfo: true
     };
   }
 }

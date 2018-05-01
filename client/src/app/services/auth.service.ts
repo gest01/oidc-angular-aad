@@ -17,13 +17,13 @@ export class AuthService {
 
   private init() {
     this.manager = new UserManager(this.config.getClientSettings());
-    this.manager.events.addUserLoaded(f => {
-      console.log('addUserLoaded...', f);
-    });
+    // this.manager.events.addUserLoaded(f => {
+    //   console.log('addUserLoaded...', f);
+    // });
 
     this.manager.getUser().then(user => {
+      console.log('getUser...', user);
       this.user = user;
-      console.log('user', user);
     });
   }
 
@@ -45,6 +45,7 @@ export class AuthService {
 
   completeAuthentication(): Promise<void> {
     return this.manager.signinRedirectCallback().then(user => {
+      console.log('completeAuthentication...', user);
       this.user = user;
     });
   }
