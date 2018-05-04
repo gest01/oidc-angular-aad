@@ -15,10 +15,13 @@ namespace backend
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IConfiguration configuration)
+        private readonly ILogger _logger;
+
+        public Startup(ILoggerFactory loggerFactory, IHostingEnvironment env, IConfiguration configuration)
         {
             Configuration = configuration;
             Environment = env;
+            _logger = loggerFactory.CreateLogger<Startup>();
         }
 
         public IConfiguration Configuration { get; }
@@ -28,8 +31,7 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string audience = "0f911654-6ac1-476c-9b06-4aeb3520d9fa"; // client id
-            //string authority = "https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/.well-known/openid-configuration";
+            string audience = "https://graph.windows.net/";
             string authority = "https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/";
 
             services.AddMvc();
@@ -45,8 +47,17 @@ namespace backend
                 o.Audience = audience;
                 o.Events = new JwtBearerEvents()
                 {
+                    OnTokenValidated = c =>
+                    {
+                        return Task.CompletedTask;
+                    },
+
+
                     OnAuthenticationFailed = c =>
                     {
+                        _logger.LogDebug("OnAuthenticationFailed");
+                        _logger.LogDebug(c.Exception.ToString());
+
                         c.NoResult();
                         c.Response.StatusCode = 500;
                         c.Response.ContentType = "text/plain";
