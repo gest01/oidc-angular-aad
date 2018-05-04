@@ -1,13 +1,7 @@
 {
-  "metadataUrl": "openid-configuration.json",
-  "authority": "openid-configuration.json",
-
-  "client_id": "0f911654-6ac1-476c-9b06-4aeb3520d9fa",
-  "redirect_uri": "__redirect_uri__",
-  "post_logout_redirect_uri": "__post_logout_redirect_uri__",
-  "response_type": "id_token",
-  "scope": "openid profile",
-  "filterProtocolClaims": true,
-  "monitorSession": false,
-  "loadUserInfo": true
+  "clientId": "0f911654-6ac1-476c-9b06-4aeb3520d9fa",
+  "metadataUrl": "__metadataUrl__",
+  "redirectUri": "__redirectUri__",
+  "scope": "openid profile email",
+  "resource": "https://graph.windows.net/"
 }

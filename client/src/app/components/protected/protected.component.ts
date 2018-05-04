@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from '../../services/auth.service';
-import { $ } from 'protractor';
+import { Component, OnInit } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-protected',
@@ -9,20 +8,18 @@ import { $ } from 'protractor';
   styleUrls: ['./protected.component.css']
 })
 export class ProtectedComponent implements OnInit {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient, private oauthService: OAuthService) {}
 
   ngOnInit() {}
+
+  public logout() {
+    this.oauthService.logOut();
+  }
+
   public getData() {
-    const header = new Headers({
-      Authorization: this.authService.getAuthorizationHeaderValue()
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + this.oauthService.getAccessToken()
     });
-
-    console.log(header);
-
-    let headers = new HttpHeaders();
-    headers = headers
-      .set('Content-Type', 'application/json; charset=utf-8')
-      .set('Authorization', this.authService.getAuthorizationHeaderValue());
 
     this.http
       .get('http://localhost:5000/api/demo', {

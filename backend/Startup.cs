@@ -29,7 +29,8 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             string audience = "0f911654-6ac1-476c-9b06-4aeb3520d9fa"; // client id
-            string authority = "https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/.well-known/openid-configuration";
+            //string authority = "https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/.well-known/openid-configuration";
+            string authority = "https://login.microsoftonline.com/stefangeigeroutlook.onmicrosoft.com/";
 
             services.AddMvc();
             services.AddCors();
